@@ -21,7 +21,7 @@
 
 <script class="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"example.com","root":"/","images":"/images","scheme":"Mist","version":"8.3.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+    var CONFIG = {"hostname":"example.com","root":"/","images":"/images","scheme":"Mist","version":"8.3.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
   </script>
 <meta property="og:type" content="website">
 <meta property="og:title" content="Hexo">
@@ -112,6 +112,7 @@
 
   <div class="site-nav-right">
     <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
 </div>
@@ -123,11 +124,37 @@
         <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
         <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
         <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
   </ul>
 </nav>
 
 
 
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
 
 </div>
         
@@ -257,10 +284,16 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2021-04-29 11:24:28 / 修改时间：11:38:54" itemprop="dateCreated datePublished" datetime="2021-04-29T11:24:28+08:00">2021-04-29</time>
+      <time title="创建时间：2021-04-29 11:24:28" itemprop="dateCreated datePublished" datetime="2021-04-29T11:24:28+08:00">2021-04-29</time>
     </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-04-30 10:48:33" itemprop="dateModified" datetime="2021-04-30T10:48:33+08:00">2021-04-30</time>
+      </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
@@ -272,6 +305,22 @@
     </span>
 
   
+      </div>
+      <div class="post-meta">
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.4k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
 </div>
 
         </div>
@@ -281,78 +330,15 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h1><hr>
-<p><img src="/2021/04/29/%E6%95%B0%E5%80%BC%E8%AE%A1%E7%AE%97/5.png" alt></p>
-<blockquote>
-<p>锯齿，下加上乘</p>
-</blockquote>
-<p><a href="./code/horner.m">代码</a></p>
-<hr>
-<p>$\frac{|p-\hat p|}{|p|}&lt;\frac{10^{1-d}}{2}$</p>
-<blockquote>
-<p>d位有效数字</p>
-</blockquote>
-<hr>
-<p><img src="/2021/04/29/%E6%95%B0%E5%80%BC%E8%AE%A1%E7%AE%97/56.png" alt></p>
-<hr>
-<h1 id="非线性方程"><a href="#非线性方程" class="headerlink" title="非线性方程"></a>非线性方程</h1><h2 id="不动点迭代"><a href="#不动点迭代" class="headerlink" title="不动点迭代"></a>不动点迭代</h2><hr>
-<p>满足$g(P)=P$，称$P$是函数$g(x)$的不动点</p>
-<p><img src="/2021/04/29/%E6%95%B0%E5%80%BC%E8%AE%A1%E7%AE%97/4.png" alt></p>
-<blockquote>
-<p>设$f(x)=x-g(x)$，由介值定理易证<br>若有两个不动点，由微分中值定理易证，矛盾</p>
-</blockquote>
-<hr>
-<p>$P_{n+1}=g(P_n)$称为不动点迭代</p>
-<p>若连续函数通过不动点迭代产生的$P_n$序列收敛，则收敛值为不动点</p>
-<p><img src="/2021/04/29/%E6%95%B0%E5%80%BC%E8%AE%A1%E7%AE%97/8.png" alt></p>
-<blockquote>
-<p>由微分中值定理易证</p>
-</blockquote>
-<p><a href="./code/fixpt.m">代码</a></p>
-<hr>
-<h2 id="选初值"><a href="#选初值" class="headerlink" title="选初值"></a>选初值</h2><p>$y_k*y_{k-1}&lt;0$或$y_k&lt;\epsilon$ &amp;&amp; $(y_k-y_{k-1})(y_{k+1}-y_k)&lt;0$</p>
-<p><a href="./code/approot.m">代码</a></p>
-<h2 id="终止条件"><a href="#终止条件" class="headerlink" title="终止条件"></a>终止条件</h2><p>$|p_n-p_{n-1}|$, $\frac{2|p_n-p_{n-1}|}{|p_n|+|p_{n-1}|}$, $|f(p_n)|$, max1</p>
-<h2 id="二分法"><a href="#二分法" class="headerlink" title="二分法"></a>二分法</h2><p>$|r-c^n|\leqslant\frac{b_0-a_0}{2^{n+1}}$</p>
-<p><a href="./code/bidect.m">代码</a></p>
-<h2 id="试位法"><a href="#试位法" class="headerlink" title="试位法"></a>试位法</h2><p>$\frac{f(b)-f(a)}{b-a}=\frac{0-f(b)}{c-b}$</p>
-<p>$c=b-\frac{f(b)(b-a)}{f(b)-f(a)}$</p>
-<p><a href="./code/regula.m">代码</a></p>
-<h2 id="牛顿法"><a href="#牛顿法" class="headerlink" title="牛顿法"></a>牛顿法</h2><hr>
-<p>$f(x)$二阶导数连续，$f^{‘}(p)\neq 0$</p>
-<p>$g(x)=x-\frac{f(x)}{f^{‘}(x)}$</p>
-<blockquote>
-<p>由1阶泰勒展开和不动点迭代易证</p>
-</blockquote>
-<p><a href="./code/newton.m">代码</a></p>
-<hr>
-<p>求$A$的平凡根</p>
-<p>$f(x)=x^2-A$</p>
-<p>$g(x)=x-\frac{x^2-A}{2x}=\frac{x+\frac{A}{x}}{2}$</p>
-<hr>
-<h2 id="割线法"><a href="#割线法" class="headerlink" title="割线法"></a>割线法</h2><p>$p_{k+1}=p_k-\frac{f(p_k)(p_k-p_{k-1})}{f(p_k)-f(p_{k-1})}$</p>
-<p><a href="./code/secant.m">代码</a></p>
-<h2 id="加速牛顿法"><a href="#加速牛顿法" class="headerlink" title="加速牛顿法"></a>加速牛顿法</h2><p>$p_{k+1}=p_k-\frac{Mf(p_k)}{f^{‘}(p_k)}$</p>
-<h2 id="收敛速度"><a href="#收敛速度" class="headerlink" title="收敛速度"></a>收敛速度</h2><p>$f(x)=0$在$x=p$处根的阶为$M$，当且仅当$f(p)=0$, $f^{1}(p)=0$,…,$f^{M-1}(p)=0$,$f^{M}(p)\neq 0$</p>
-<p><img src="/2021/04/29/%E6%95%B0%E5%80%BC%E8%AE%A1%E7%AE%97/19.png" alt></p>
-<p><img src="/2021/04/29/%E6%95%B0%E5%80%BC%E8%AE%A1%E7%AE%97/18.png" alt></p>
-<p><img src="/2021/04/29/%E6%95%B0%E5%80%BC%E8%AE%A1%E7%AE%97/9.png" alt></p>
-<h1 id="线性方程组"><a href="#线性方程组" class="headerlink" title="线性方程组"></a>线性方程组</h1><h2 id="上三角矩阵"><a href="#上三角矩阵" class="headerlink" title="上三角矩阵"></a>上三角矩阵</h2><p>$x_k=\frac{b_k-\sum^N_{j=k+1}a_{kj}x_j}{a_{kk}}$</p>
-<p><a href="./code/backsub.m">代码</a></p>
-<h2 id="高斯消元"><a href="#高斯消元" class="headerlink" title="高斯消元"></a>高斯消元</h2><p>偏序选主元：选本列绝对值最大的作为主元</p>
-<p>按比例偏序选主元：选本列$\frac{绝对值}{本行最大绝对值}$最大的作为主元</p>
-<p><a href="./code/uptrbk.m">代码</a></p>
-<h2 id="LUP分解"><a href="#LUP分解" class="headerlink" title="LUP分解"></a>LUP分解</h2><p><a href>LUP分解</a></p>
-<p>$det(A)=(-1)^qdet(U)$，$q$是从单位矩阵得到$P$所交换的行的次数</p>
-<p>$AA^{-1}=I$, $A[C_1 C_2 … C_N]=[e_1 e_2 … e_N]$, $AC_i=e_i$</p>
-<h2 id="雅可比迭代"><a href="#雅可比迭代" class="headerlink" title="雅可比迭代"></a>雅可比迭代</h2><p>若$|a_{kk}|&gt;\sum^N_{j=1,j\neq k}|a_{kj}|$，对$k=1,2…,N$成立，则称$A$具有严格对角优势</p>
-<p>若$A$具有严格对角优势，则$AX=B$有唯一解$P$，对任意初始值，雅可比迭代收敛到$P$</p>
-<p>$x^{(k+1)}_i=\frac{b_i-\sum^{N}_{j=1,j\neq i}a_{ij}x^{(k)}_j}{a_{ii}}$, $i=1,2,…,N$</p>
-<p><a href="./code/jacobi.m">代码</a></p>
-<h2 id="高斯-赛德尔迭代"><a href="#高斯-赛德尔迭代" class="headerlink" title="高斯-赛德尔迭代"></a>高斯-赛德尔迭代</h2><p>同理，通常比雅可比迭代快</p>
-<p>$x^{(k+1)}_i=\frac{b_i-\sum^{i-1}_{j=1}a_{ij}x^{(k+1)}_j-\sum^{N}_{j=i+1}a_{ij}x^{(k)}_j}{a_{ii}}$, $i=1,2,…,N$</p>
-<p><a href="./code/gseid.m">代码</a></p>
-
+          <h1 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h1>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/04/29/%E6%95%B0%E5%80%BC%E8%AE%A1%E7%AE%97/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -409,10 +395,26 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-04-25 22:12:30" itemprop="dateModified" datetime="2021-04-25T22:12:30+08:00">2021-04-25</time>
+        <time title="修改时间：2021-04-29 15:40:27" itemprop="dateModified" datetime="2021-04-29T15:40:27+08:00">2021-04-29</time>
       </span>
 
   
+      </div>
+      <div class="post-meta">
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>367</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
 </div>
 
         </div>
@@ -486,8 +488,38 @@
   </span>
   <span class="author" itemprop="copyrightHolder">CYY</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
-  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">2k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">2 分钟</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
 
     </div>
   </footer>
@@ -497,6 +529,7 @@
 <script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
 
   
+<script src="/js/local-search.js"></script>
 
 
 
@@ -504,6 +537,7 @@
 
 
   
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 
 
